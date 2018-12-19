@@ -23,7 +23,7 @@
 </head>
 <body id="main"> 
 	@include('layouts.nav')   
-	<main >
+	<main style="margin-top: 4.2rem; background: #f4f6f8" >
 	 @yield('content')
 	</main>    
 	@include('layouts.footer')

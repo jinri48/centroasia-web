@@ -35,13 +35,13 @@ var total_page 			=0;
 
 function getProducts(product_name,_current_page,_per_page, category_id){
 	var data = {
-		token 		: readCookie('token'),
+		// token 		: readCookie('token'),
 		description : product_name,
 		current_page: _current_page,
 		per_page 	: _per_page,
 		category_id : category_id
 	};  
-	postRequest('products',data,function(response){
+	postRequestWithHeader('products',data,function(response){
 		if(response.success == false){
 			showWarning(response.message);
 			return;
@@ -71,7 +71,7 @@ var over_all_total = 0;
 function getCart(){
 	cart_list = [];
 	over_all_total = 0; 
-	postRequest('cart/get_cart',{token:readCookie('token')},function(response){
+	postRequestWithHeader('cart/get_cart',{},function(response){
 		//console.log(response); 
 		if(response.success == false){
 			showSuccess(response.message); 
@@ -176,9 +176,9 @@ function cartItemRemover(id){
 		            btnClass: 'btn-warning',
 		            action: function(){
 		            	console.log('you choose to remove'); 
-		            	var data = { token:readCookie('token'),product_id:p_id};
+		            	var data = { /*token:readCookie('token'),*/ product_id:p_id};
 		            	//var prod_id = id;
-		            	postRequest('cart/remove_item_from_cart',data,function(response){
+		            	postRequestWithHeader('cart/remove_item_from_cart',data,function(response){
 		            		if (response.success == false) {
 		            			showWarning('Failed to remove item from your cart');
 		            		} 
@@ -212,7 +212,7 @@ function removeCart(){
 		            btnClass: 'btn-blue',
 		            action: function(){
 
-		            	postRequest('cart/delete_cart',{token:readCookie('token')},function(response){
+		            	postRequestWithHeader('cart/delete_cart',{/*token:readCookie('token')*/},function(response){
         					if(response.success == false){
         						showWarning(response.message);
         					}
@@ -407,11 +407,11 @@ function addToCartBtnClick(){
 
 function addToCart(id,qty){
 	var data = {
-        	token 		: readCookie('token'),
+        	// token 		: readCookie('token'),
         	product_id 	: id,
         	qty 		: qty
         }
-        postRequest('cart/add_to_cart',data,function(response){
+        postRequestWithHeader('cart/add_to_cart',data,function(response){
         	//console.log(response);
         	if(response.success == false){
         		showWarning(response.message);
@@ -479,9 +479,9 @@ function btn_last(){
 function displayCategory(){
 	var selectObj =$('#category');	
 	var data = {
-		token: readCookie('token')
+		// token: readCookie('token')
 	}
-	postRequest('product_category',data,function(response){
+	postRequestWithHeader('product_category',data,function(response){
 		if(response.success == false){
 			showWarning(response.message);
 			return;
@@ -492,7 +492,7 @@ function displayCategory(){
 		for (var i = 0; i < response.data.length; i++) {
 			var category = response.data[i];
 			
-			selectObj.append('<option value="'+category.CATCODE+'">'+category.CATNAME+'</option>');
+			selectObj.append('<option value="'+category.code+'">'+category.name+'</option>');
 		}
 	});
 }	

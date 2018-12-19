@@ -16,7 +16,7 @@ var cart_list_ctr = 0;
 var over_all_total = 0; 
 
 function getCart(){
-	postRequest('cart/get_cart',{token:readCookie('token')},function(response){
+	postRequestWithHeader('cart/get_cart',{/*token:readCookie('token')*/},function(response){
 		//console.log(response); 
 		if(response.success == false){
 			showSuccess(response.message); 
@@ -66,9 +66,9 @@ function changeQty(){
 		if(value == '' || value == 0){
 			if (confirm('This item will be remove in your cart, do you want to continue?')) {
 			    //remove item from cart
-			    var data = { token:readCookie('token'),product_id:id };
+			    var data = { /*token:readCookie('token'),*/product_id:id };
 			    var prod_id = id;
-			    postRequest('cart/remove_item_from_cart',data,function(response){
+			    postRequestWithHeader('cart/remove_item_from_cart',data,function(response){
 			    	if (response.success == false) {
 			    		showWarning('Failed to remove item from your cart');
 			    	}
@@ -81,8 +81,8 @@ function changeQty(){
 			}
 		}else{
 			//update
-			var data = { token:readCookie('token'),product_id:id,qty:value };
-			postRequest('cart/update_cart',data,function(response){
+			var data = { /*token:readCookie('token'),*/product_id:id,qty:value };
+			postRequestWithHeader('cart/update_cart',data,function(response){
 		    	if (response.success == false) {
 		    		showWarning('Failed to update item from your cart');
 		    	}
@@ -170,7 +170,7 @@ function removeCart(){
 
 		if (confirm('Your cart will be empty, do you want to continue?')) {
 
-			postRequest('cart/delete_cart',{token:readCookie('token')},function(response){
+			postRequestWithHeader('cart/delete_cart',{/*token:readCookie('token')*/},function(response){
 				if(response.success == false){
 					showWarning(response.message);
 				}

@@ -24,7 +24,7 @@ function getSalesOrderDetailesHistory(){
 }
 
 function getSalesOrderDetailsHistory(so_id){
-	postRequest('order/sales_order_details',{token:readCookie('token'),sales_order_id:so_id},function(response){
+	postRequestWithHeader('order/sales_order_details',{/*token:readCookie('token'),*/sales_order_id:so_id},function(response){
 		console.log(response);
 		if(response.success == false){
 			showSuccess(response.message);

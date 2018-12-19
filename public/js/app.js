@@ -10,7 +10,8 @@ Pace.on("done", function(){
 //var urlAPI  =   'http://localhost:8001/api/';
 //var url     =   'http://xxx';
 /*----------  OFFLINE  ----------*/
-var urlAPI  =   'http://localhost:8020/api/';
+// var urlAPI  =   'http://localhost:8020/api/';
+var urlAPI = "http://172.16.12.108:8020/api/";
 var url     =   'http://localhost:8021/';
 
 /*=====  End of SYSTEM URL PATH  ======*/
@@ -62,14 +63,14 @@ function postRequest(api_url,request,callback){
 
 function postRequestWithHeader(api_url,request,callback){ 
 	var token = readCookie('token'); 
-    alert(token);
+    // alert(token);
     $.ajax({
         url: urlAPI+api_url,
         type: "POST",
         dataType: "json",
         data : request,
-        //headers: {'token': token},
-        beforeSend: function(xhr){xhr.setRequestHeader('token', token);},
+        headers: {token: token},
+       // beforeSend: function(xhr){xhr.setRequestHeader('token', token);},
         success: function(data){
             callback(data);
         },
@@ -314,7 +315,7 @@ function login(username,password){
 }
 
 function logout(){
-    postRequest('user/logout',{token:readCookie('token')},function(data){
+    postRequestWithHeader('user/logout',{/*token:readCookie('token')*/},function(data){
         if(data.success == false){
             showError(data.message);
 
@@ -364,7 +365,7 @@ function updateCartItems(total){
 }
 
 function getCartItems(){
-    postRequest('cart/get_cart',{token:readCookie('token')},function(response){
+    postRequestWithHeader('cart/get_cart',{/*token:readCookie('token')*/},function(response){
         if (response.success == false) {
             showSuccess(response.message); 
             return;

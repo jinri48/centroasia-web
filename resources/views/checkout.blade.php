@@ -12,7 +12,7 @@
 <div class="container" style="padding: 25px;">
 <!-- YOUR PAGE CONTENT HERE -->
 	<div class="row">
-		<div class="col col-md-6">
+		<div class="col col-md-7">
 
 			<nav aria-label="breadcrumb" style="font-size: .75em;">
 			  <ol class="breadcrumb">
@@ -61,7 +61,7 @@
 			</div>
 			<br>
 		</div>
-		<div class="col col-md-6">
+		<div class="col col-md-5">
 			<div class="card">
 			  <div class="card-header">
 			    MODE OF PAYMENT

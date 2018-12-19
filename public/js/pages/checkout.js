@@ -19,7 +19,7 @@ var cart_list_ctr = 0;
 var over_all_total = 0;
 
 function getCart(){
-	postRequest('cart/get_cart',{token:readCookie('token')},function(response){
+	postRequestWithHeader('cart/get_cart',{/*token:readCookie('token')*/},function(response){
 		//console.log(response);
 		if(response.success == false){
 			showSuccess(response.message); 
@@ -58,7 +58,7 @@ function getCart(){
 }
 
 function getDeliveryAddress(){
-	postRequest('user/get_delivery_address',{token:readCookie('token')},function(response){
+	postRequestWithHeader('user/get_delivery_address',{/*token:readCookie('token')*/},function(response){
 				if(response.success==false){
 					$('#delivery_address').text('Nothing to display.');
 					return;
@@ -69,7 +69,7 @@ function getDeliveryAddress(){
 }
 
 function getPersonalDetails(){
-	postRequest('user/get_personal_details',{token:readCookie('token')},function(response){
+	postRequestWithHeader('user/get_personal_details',{/*token:readCookie('token')*/},function(response){
 				if(response.success==false){
 					$('#personal_details').text('Nothing to display.');
 					return;
@@ -80,7 +80,7 @@ function getPersonalDetails(){
 }
 
 function getMop(){
-	postRequest('mode_of_payment/index',{token:readCookie('token')},function(response){
+	postRequestWithHeader('mode_of_payment/index',{/*token:readCookie('token')*/},function(response){
 		if(response.success==false){
 			// $('#personal_details').text('Nothing to display.');
 			return;
@@ -158,7 +158,7 @@ function checkOut(){
 		            btnClass: 'btn-blue',
 		            action: function(){
 
-		            	postRequest('order/add_sales_order',{token:readCookie('token'),mop_id:mop},function(response){
+		            	postRequestWithHeader('order/add_sales_order',{/*token:readCookie('token'),*/mop_id:mop},function(response){
 		            		if(response.success==false){
 		            			showWarning(response.message);
 		            			return;
