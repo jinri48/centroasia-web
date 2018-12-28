@@ -30,6 +30,69 @@
 .card-deck .card:not(:first-child) {
  margin-left: 15px;
 } 
+
+/* ---------product items----------- */
+.products .card .card-text{
+  font-size: .8em;
+}
+
+.product-item .card-footer{
+  padding-right: .5rem;
+  padding-left: .5rem; 
+}
+
+.products.card-deck 
+{
+  flex-direction: column !important;
+} 
+
+.products.card-deck .card-body{
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+/* -------------------- */
+/* ----MEDIA QUERIES--- */
+/* -------------------- */
+
+
+
+@media (min-width:576px) {
+  .products.card-deck{
+   flex-direction: row !important;
+
+ }
+
+ .products.card-deck > .card
+ {
+  width: 33% !important;
+  flex-wrap: wrap;
+  flex: initial;
+
+}
+
+}  
+
+@media (min-width:768px) {
+
+  .products.card-deck > .card
+  {
+    width: 25% !important;
+    flex-wrap: wrap;
+    flex: initial;
+
+  }
+} 
+
+
+@media (min-width:1200px) {
+  .products.card-deck > .card
+  {
+    width: 17% !important;
+    flex-wrap: wrap;
+    flex: initial; 
+  }
+}
+
 </style>
 @endsection
 
@@ -47,7 +110,7 @@
 
     {{-- === --}}
     <div class="row">  
-      <div class="col-md-8"  style=""> 
+      <div class="col-md-9"  style=""> 
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark mt-3 mb-2"> 
           <!-- Navbar brand -->
           <span class="navbar-brand">Categories:</span>
@@ -81,100 +144,84 @@
           </div>
           <!-- Collapsible content -->
         </nav>
-        <div class=""> 
-          <div class="btn-toolbar justify-content-between mt-3" role="toolbar" aria-label="Toolbar with button groups">
-            <span class="p-2" style="font-size: 90%">
-              Showing <span id="total_res"></span> Results
-              <span class="divider"></span> Page <span id="current_page"></span> of <span id="last_page"></span>
-            </span>
-            <div class="btn-group btn-group-sm pagination_master" role="group" aria-label="First group">
-              <button type="button" class="btn btn-secondary" id="btn_prev" aria-label="Previous button">Prev</button>
-              <button type="button" class="btn btn-secondary" id="btn_first">first</button>
-              
-              <button type="button" class="btn btn-secondary" id="btn_last">last</button>
-              <button type="button" class="btn btn-secondary" id="btn_next" aria-label="Next button">Next</button>
-            </div>
-            
-          </div> 
-        </div> 
+        
+        <div class="btn-toolbar justify-content-between mt-3" role="toolbar" aria-label="Toolbar with button groups">
+          <span class="p-2" style="font-size: 90%">
+            Showing <span id="total_res"></span> Results
+            <span class="divider"></span> Page <span id="current_page"></span> of <span id="last_page"></span>
+          </span>
+          <div class="btn-group btn-group-sm pagination_master" role="group" aria-label="First group">
+            <button type="button" class="btn btn-secondary" id="btn_prev" aria-label="Previous button">Prev</button>
+            <button type="button" class="btn btn-secondary" id="btn_first">first</button>
 
-        <div class="row" id="shop_items" style="padding-bottom: 15px;">
+            <button type="button" class="btn btn-secondary" id="btn_last">last</button>
+            <button type="button" class="btn btn-secondary" id="btn_next" aria-label="Next button">Next</button>
+          </div>
+
         </div> 
+        
+
+        <!-- <div class="row" id="shop_items" style="padding-bottom: 15px;">
+        </div>  -->
+
+        <div class="card-deck d-flex flex-row justify-content-center products mt-3" id="shop_items">
+        </div>
+
+
       </div> 
-      <div class="col-md-4" style="/* box-shadow: 0 3px 5px rgba(0, 0, 0, .25); *//* border: red; *//* border-style: dashed; */">
-        <div style="position:relative;color:white;background: #1d1f2e;" class="mr-1 mt-3 h-100 px-3 py-4">
-          <div style="position: fixed;">
-            <div style="position: relative;">
-              <header >
-               <h5>Cart list</h5>
-             </header>
-             <hr class="bg-light">
-              <div class="scrollable-cart-content">
 
-              </div>
-              </div>
+   <div class="col-md-3 py-3 mt-3" style="box-shadow: 0 3px 5px rgba(0, 0, 0, .25); ">
+       <div style="position: fixed;  padding-top: 5px; ">
+         <h5>Cart list</h5>
+         <hr>
+         <div id="without_data" style="text-align: center; display: none;">
+           <h6>Nothing to display..</h6>
+         </div>
+         <div id="with_data" style=" display: none;">
+           <div class="cart" style="position: relative; max-height: 300px; "> 
+             <table class="table table-sm table table-striped"> 
+               <tbody id="cart-content">
+                 <tr>
+                   <th scope="row" width="5%">1</th>
+                   <td width="80%">Mark</td>
+                   <td class="text-right" width="15%">0.00</td> 
+                 </tr> 
+               </tbody>
+             </table> 
+           </div> 
+           <div id="total_amount" class="text-right" style="padding: 5px 15px 5px 0px;">
            </div>
-
-          <div class="cart-sum" style="position: absolute; bottom: 0" >
-               <hr class="bg-light">
-               <div id="total_amount" class="text-right" style="padding: 5px 15px 5px 0px;"> </div>
-               <div id="actions">
-                 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                   <button type="button" class="btn btn-light" id="btn_cart_clear">Clear</button>
-                   <button type="button" class="btn btn-light" id="btn_cart_checkout">Checkout</button> 
-                 </div>
-               </div> 
+           <div id="actions"  >
+             <div class="btn-group btn-group-sm" style="float:right; margin-right: 10px;" role="group" aria-label="Basic example">
+               <button type="button" class="btn btn-light" id="btn_cart_clear">Clear</button>
+               <button type="button" class="btn btn-light" id="btn_cart_checkout">Checkout</button> 
              </div>
-           
+           </div> 
+         </div>
+         
+       </div>
+       
+     </div>
+      <!-- <div class="col-md-3 ">
+        <div style="background: red; position:fixed;" class="h-100" >
+          <h4>sdajhaksdhfg</h4>
         </div>
-
-          <!-- <div style=" padding-top: 5px; */">
-          
-           <div id="without_data" style="text-align: center; display: none;">
-             <h6>Nothing to display..</h6>
-           </div>
-                      <div id="with_data" style=" display: none;">
-                  <div class="cart" style="position: relative; max-height: 500px; "> 
-                    <table class="table table-sm table table-striped"> 
-                      <tbody id="cart-content">
-                        <tr>
-                          <th scope="row" width="5%">1</th>
-                          <td width="80%">Mark</td>
-                          <td class="text-right" width="15%">0.00</td> 
-                        </tr> 
-                      </tbody>
-                    </table> 
-                  </div> 
-                  <div id="total_amount" class="text-right" style="padding: 5px 15px 5px 0px;">
-                  </div>
-                  <div id="actions"  >
-                    <div class="btn-group btn-group-sm" style="float:right; margin-right: 10px;" role="group" aria-label="Basic example">
-                      <button type="button" class="btn btn-light" id="btn_cart_clear">Clear</button>
-                      <button type="button" class="btn btn-light" id="btn_cart_checkout">Checkout</button> 
-                    </div>
-                  </div> 
-                </div>
-          
-              </div>
-            </div>
-          
-          </div> -->
-        </div>
-        {{-- === --}}
-      </div>
+      </div> -->
+      {{-- === --}}
+    </div>
 
 
 
 
-      @endsection
+    @endsection
 
 
-      @section('custom_js')
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
-      <script src="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="/js/plugin/sweetalert2.min.js"></script>
-      <script src="/js/pages/shop.js"></script>
-      <script> 
+    @section('custom_js')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+    <script src="http://malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/js/plugin/sweetalert2.min.js"></script>
+    <script src="/js/pages/shop.js"></script>
+    <script> 
   //$('#main-nav').addClass('fixed-top');
 </script>
 @endsection

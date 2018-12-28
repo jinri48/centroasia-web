@@ -5,7 +5,7 @@ $(document).ready(function(){
     }
 
     $(".cart").mCustomScrollbar();
-    $("#shop_items").mCustomScrollbar();
+   
 
  	getProducts('',1,20);
 	btn_go();
@@ -290,45 +290,68 @@ function displayProducts(items,base_url,default_img,surcharge){
 		}
 
 		var unit_price = parseFloat(item.UNITPRICE) + parseFloat(surcharge);
-			$('#shop_items').append(''+ 
-	            '<div class="col-sm-6 item">'+
-	                '<div class="col-item">'+
-	                    '<div class="photo">'+
-	                        '<img src="'+img_path+'" class="img-responsive" alt="a" />'+
-	                    '</div>'+
-	                    '<div class="info">'+
-	                        '<div class="row">'+
-	                        	'<div class="col-md-12 product_name">'+item.DESCRIPTION+'</div>'+
-	                            '<div class="price col-md-12">'+ 
-	                                '<h6 class="price-text-color">'+
-	                                    'Price '+unit_price.toFixed(2)+'</h6>'+
-	                            '</div> '+
-	                        '</div>'+
-	                        '<div class="separator">'+
-	                        '</div></br>'+
-	                        '<div class="row">'+
-	                        	'<div class="col-md-4 col-sm-4">'+
-	                        		//add_to_cart
-	                        		'<button style="width:35px;" class="btn btn-block btn-primary btn-sm add-to-cart" id="'+item.PRODCODE+'" data-toggle="tooltip" data-placement="top" title="Add to cart">'+
-	                        			' <i class="fa fa-shopping-cart"></i> '+
-	                        		'</button>'+
-	                        	'</div>'+
-	                        	'<div class="col-md-8 col-sm-8" >'+
-	                        		//qty
-                        		  '<div class="input-group input-group-sm">'+
-	                                '<div class="input-group-prepend">'+
-	                                  '<span class="input-group-text" id="basic-addon1">Qty</span>'+
-	                                '</div>'+
-	                                '<input width="20" id="qty_'+item.PRODCODE+'" type="text" value="1" class="form-control input-sm cart_qty" placeholder="">'+
-	                              '</div>'+
-	                        	'</div>'+
-	                        '</div>'+
+			// $('#shop_items').append(''+ 
+	  //           '<div class="col-sm-6 item">'+
+	  //               '<div class="col-item">'+
+	  //                   '<div class="photo">'+
+	  //                       '<img src="'+img_path+'" class="img-responsive" alt="a" />'+
+	  //                   '</div>'+
+	  //                   '<div class="info">'+
+	  //                       '<div class="row">'+
+	  //                       	'<div class="col-md-12 product_name">'+item.DESCRIPTION+'</div>'+
+	  //                           '<div class="price col-md-12">'+ 
+	  //                               '<h6 class="price-text-color">'+
+	  //                                   'Price '+unit_price.toFixed(2)+'</h6>'+
+	  //                           '</div> '+
+	  //                       '</div>'+
+	  //                       '<div class="separator">'+
+	  //                       '</div></br>'+
+	  //                       '<div class="row">'+
+	  //                       	'<div class="col-md-4 col-sm-4">'+
+	  //                       		//add_to_cart
+	  //                       		'<button style="width:35px;" class="btn btn-block btn-primary btn-sm add-to-cart" id="'+item.PRODCODE+'" data-toggle="tooltip" data-placement="top" title="Add to cart">'+
+	  //                       			' <i class="fa fa-shopping-cart"></i> '+
+	  //                       		'</button>'+
+	  //                       	'</div>'+
+	  //                       	'<div class="col-md-8 col-sm-8" >'+
+	  //                       		//qty
+   //                      		  '<div class="input-group input-group-sm">'+
+	  //                               '<div class="input-group-prepend">'+
+	  //                                 '<span class="input-group-text" id="basic-addon1">Qty</span>'+
+	  //                               '</div>'+
+	  //                               '<input width="20" id="qty_'+item.PRODCODE+'" type="text" value="1" class="form-control input-sm cart_qty" placeholder="">'+
+	  //                             '</div>'+
+	  //                       	'</div>'+
+	  //                       '</div>'+
 
-	                        '<div class="clearfix">'+
-	                        '</div>'+
-	                    '</div>'+
-	                '</div>'+
-	            '</div> '
+	  //                       '<div class="clearfix">'+
+	  //                       '</div>'+
+	  //                   '</div>'+
+	  //               '</div>'+
+	  //           '</div> '
+			// );
+			console.log(img_path);
+			$('#shop_items').append('' +
+				'<div class="card mb-2 product-item">'
+				   +'<img src="'+img_path+'" class="card-img-top img-fluid"  alt="Product Image">'
+				   +'<div class="card-body d-flex flex-column">'
+				      +'<p class="card-text text-center">'+item.DESCRIPTION+'</p>' 
+				   +'</div>'
+				   +'<div class="card-footer ">'
+				 	  +'<p class="card-text product-price justify-content-end">Price '+unit_price.toFixed(2)+'</p>'
+				 	  +'<div class="d-flex">'
+					      	+'<button class="btn btn-primary btn-sm mr-3 ml-0 add-to-cart" id="'+item.PRODCODE+'" data-toggle="tooltip" data-placement="top" title="Add to cart">'
+					      		+'<i class="fa fa-shopping-cart"></i> '
+					      	+'</button>'
+					      +'<div class="input-group input-group-sm">'
+					         +'<div class="input-group-prepend">'
+					            +'<span class="input-group-text" id="basic-addon1">Qty</span>'
+					         +'</div>'
+				    	     +'<input width="20" id="qty_'+item.PRODCODE+'" type="text" value="1" class="form-control input-sm cart_qty" placeholder="" wtx-context="8E54477F-0FF1-43F4-85F9-473AA53BAB92">'
+				     	 +'</div>'
+				     +'</div>'	 
+				   +'</div>'	
+				+'</div>'
 			);
 
 	});
